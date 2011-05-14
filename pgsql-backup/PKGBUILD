@@ -14,6 +14,8 @@ optdepends=('bzip2: better compression of backups')
 install="$pkgname.install"
 source=("https://github.com/fukawi2/pgsql-backup/raw/1803094cf4a348fdabfcd849a5a6ef76c9f1ba09/pgsql-backup"
         "https://github.com/fukawi2/pgsql-backup/raw/1803094cf4a348fdabfcd849a5a6ef76c9f1ba09/options.conf.default")
+md5sums=('7c33712ce5bc427b32eae382a52636b9'
+         '36eb3324b1bf56e5c3e51932488bdecd')
 
 package() {
 	install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname
