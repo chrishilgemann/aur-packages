@@ -7,7 +7,7 @@
 pkgname=gnomebaker
 pkgver=0.6.4
 pkgrel=2
-pkgdesc="GnomeBaker is a full featured CD/DVD burning application for Gnome"
+pkgdesc="A full featured CD/DVD burning application for Gnome"
 license=('GPL')
 arch=('i686' 'x86_64')
 url="http://gnomebaker.sourceforge.net"
