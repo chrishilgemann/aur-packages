@@ -14,7 +14,7 @@
 
 pkgname=zabbix-server
 pkgver=1.8.5
-pkgrel=3
+pkgrel=4
 pkgdesc="Software for monitoring of your applications, network and servers."
 arch=('i686' 'x86_64')
 url="http://www.zabbix.com"
