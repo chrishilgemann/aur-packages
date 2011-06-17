@@ -59,9 +59,13 @@ package() {
   install -d -m0750 $pkgdir/var/log/zabbix
 
   # sql templates
-  for schema_file in ibm_db2.sql mysql.sql oracle.sql postgresql.sql sqlite.sql ; do
-    install -D -m 0444 create/schema/$schema_file $pkgdir/usr/share/zabbix/dbms/create/data/$schema_file
+  for sql_file in ibm_db2.sql mysql.sql oracle.sql postgresql.sql sqlite.sql ; do
+    install -D -m 0444 create/schema/$sql_file $pkgdir/usr/share/zabbix/dbms/create/schema/$sql_file
   done
+  for sql_file in data.sql images_ibm_db2.sql images_mysql.sql images_oracle.sql images_pgsql.sql images_sqlite3.sql ; do
+    install -D -m 0444 create/data/$sql_file $pkgdir/usr/share/zabbix/dbms/create/data/$sql_file
+  done
+  cp -r create/data/images/ $pkgdir/usr/share/zabbix/dbms/create/data/images
 
   # frontends (user:group = root:apache)
   mkdir -p $pkgdir/$_HTMLPATH/
