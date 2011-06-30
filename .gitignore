@@ -6,3 +6,4 @@ gitweb/git-*.tar.bz2
 gnome-web-photo/gnome-web-photo-*.tar.bz2
 massh/massh.tgz
 postgresql-client/postgresql-*.tar.bz2
+apache-mod_bw/mod_bw-*.*.tgz
