@@ -11,9 +11,10 @@
 ### If you have found a problem with the package/PKGBUILD (as opposed to
 ### the software) then please do email me or post an AUR comment.
 
-pkgname=mod_bw
+pkgname=apache-mod_bw
+_pkgname=mod_bw
 pkgver=0.7
-pkgrel=4
+pkgrel=1
 pkgdesc="DSO module for Apache that throttles HTTP traffic"
 url="http://bwmod.sourceforge.net"
 arch=('i686' 'x86_64')
@@ -21,7 +22,7 @@ license=('apache')
 depends=('apache')
 makedepends=('apache')
 install="$pkgname.install"
-source=("http://bwmod.sourceforge.net/files/$pkgname-$pkgver.tgz"
+source=("http://bwmod.sourceforge.net/files/$_pkgname-$pkgver.tgz"
         'apr_atomic_fix.patch')
 md5sums=('d792a892517ca89f21ac2a6c01e6ccb2'
          'f9cdca58c58678a2e334086ccf81f898')
@@ -30,18 +31,18 @@ build() {
   _MODDIR='usr/lib/httpd/modules'
   _DOCDIR="usr/share/doc/$pkgname"
   
-  cd $srcdir/$pkgname
+  cd $srcdir/$_pkgname
 
   # fix for undefined symbol errors:
   # http://4j.blogspot.com/2008/09/fix-for-modbw-when-getting-error.html
-  patch < $srcdir/apr_atomic_fix.patch || return 1
+  patch < $srcdir/apr_atomic_fix.patch
   
   # make the module
-  /usr/sbin/apxs -c -o $pkgname.so $pkgname.c || return 1
-  install -Dm644 .libs/$pkgname.so $pkgdir/$_MODDIR/$pkgname.so || return 1
+  /usr/sbin/apxs -c -o $_pkgname.so $_pkgname.c
+  install -Dm644 .libs/$_pkgname.so $pkgdir/$_MODDIR/$_pkgname.so
 
   # install docs
-  install -Dm644 $pkgname.txt $pkgdir/$_DOCDIR/$pkgname.txt || return 1
+  install -Dm644 $_pkgname.txt $pkgdir/$_DOCDIR/$_pkgname.txt
 }
 
 # vim:set ts=2 sw=2 et:
