@@ -12,7 +12,7 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=mibbrowser
-pkgver=1
+pkgver=7.5  # Found in docs/help.pdf
 pkgrel=1
 pkgdesc="A powerful and easy-to-use MIB browser. Supports standard & proprietary MIBs. Also issue SNMP requests to retrieve agent data. Built-in trap receiver can receive SNMP traps and handle trap storm."
 arch=('any')
@@ -20,11 +20,7 @@ license=('custom')
 depends=('java-runtime')
 url="http://ireasoning.com/mibbrowser.shtml"
 source=("http://www.ireasoning.com/download/mibfree/$pkgname.zip")
-md5sums=('325ff16d029e695e5f8d28474359f6e8')
-
-build() {
-	msg "Nothing to compile for $pkgname"
-}
+md5sums=('8b2180cf36ee157a6f70b384bd00fdd0')
 
 package() {
   _dest="opt/${pkgname}"
