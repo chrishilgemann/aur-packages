@@ -12,8 +12,8 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=vtigercrm-customerportal
-pkgver=5.1.0
-pkgrel=2
+pkgver=5.2.1
+pkgrel=1
 pkgdesc="Customer portal for vTigerCRM"
 arch=(any)
 url="http://vtiger.com"
@@ -23,11 +23,7 @@ backup=("srv/http/vtigercrm/portal/PortalConfig.php")
 options=('!strip')
 install=$pkgname.install
 source=("http://sourceforge.net/projects/vtigercrm/files/vtiger%20CRM%20$pkgver/$pkgname-$pkgver.zip")
-md5sums=('5157756fd4ea048714c9cadc677fd99f')
-
-build() {
-  msg "Nothing to compile for $pkgname"
-}
+md5sums=('edc8293ae6af44df20b76fe625bfc490')
 
 package() {
   _INSTDIR="${pkgdir}/srv/http/vtigercrm/portal"
