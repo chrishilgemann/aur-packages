@@ -26,8 +26,8 @@ md5sums=('be118dd95537221da38008845fc0d84a')
 build() {
 	cd ${srcdir}/${pkgname}-${pkgver}
 
-  msg "NOTE: Comment one (or both) of the --with-mysql and/or --with-postgresql lines if you want to reduce dependency chain"
-
+  # Remove one (or both) of the --with-mysql and/or --with-postgresql
+  # lines if you want to reduce dependency chain"
 	./configure \
     --prefix=/usr \
     --with-mysql \
