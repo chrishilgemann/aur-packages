@@ -40,53 +40,53 @@ build() {
   # Apply patches to fix things
   #
   # Transparent tray icon (from Ubuntu launchpad)
-  patch -Np1 -i ../12_firestarter_transparent_icon.patch || return 1
+  patch -Np1 -i ../12_firestarter_transparent_icon.patch
   
   # fix GUI crashes on newer Gnome libs (from Ubuntu launchpad)
-  patch -Np1 -i ../18_fix_memleak.patch || return 1
+  patch -Np1 -i ../18_fix_memleak.patch
   
   # Replace kernel.log with iptables.log
-  patch -Np1 -i ../events-log-fix.patch || return 1
+  patch -Np1 -i ../events-log-fix.patch
   
   # menu-toolbar-icons-fix.patch: fixed a couple menu and toolbar icons to follow GTK theme
-  patch -Np1 -i ../menu-toolbar-icons-fix.patch || return 1
+  patch -Np1 -i ../menu-toolbar-icons-fix.patch
   
   # Configure, Build and Install to $pkgdir
   ./configure \
     --prefix=/usr \
     --sysconfdir=/etc \
-    --localstatedir=/var || return 1
+    --localstatedir=/var
   
-  make || return 1
+  make
 }
 
 package() {
   cd $srcdir/$pkgname-$pkgver
 
-  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR=${pkgdir} install || return 1
+  make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR=${pkgdir} install
   
   # Create default empty ruleset and fix permissions
-  mkdir ${pkgdir}/etc/firestarter/outbound/ || return 1
-  touch ${pkgdir}/etc/firestarter/outbound/allow-service || return 1
-  chown -R root:root ${pkgdir}/etc/firestarter/ || return 1
+  mkdir ${pkgdir}/etc/firestarter/outbound/
+  touch ${pkgdir}/etc/firestarter/outbound/allow-service
+  chown -R root:root ${pkgdir}/etc/firestarter/
 
   # Install rc.init script
-  install -D -m755 ${srcdir}/rc.firestarter ${pkgdir}/etc/rc.d/firestarter || return 1
+  install -D -m755 ${srcdir}/rc.firestarter ${pkgdir}/etc/rc.d/firestarter
   
   # Fix the desktop launcher to run with root permission using gksudo.
   sed -i "s|Exec=|TryExec=gksu\n\0gksu |" \
-    ${pkgdir}/usr/share/gnome/apps/Internet/firestarter.desktop || return 1
+    ${pkgdir}/usr/share/gnome/apps/Internet/firestarter.desktop
   
   # Move the .desktop file to a standard location
-  install -Dm644 $pkgdir/usr/share/gnome/apps/Internet/${pkgname}.desktop $pkgdir/usr/share/applications/${pkgname}.desktop || return 1
-  rm -rf $pkgdir/usr/share/gnome || return 1
+  install -Dm644 $pkgdir/usr/share/gnome/apps/Internet/${pkgname}.desktop $pkgdir/usr/share/applications/${pkgname}.desktop
+  rm -rf $pkgdir/usr/share/gnome
   
   # Merge Schema files to /usr/share/gconf so the .install file
   # can update the database at install time.
-  mkdir -p ${pkgdir}/usr/share/gconf/schemas || return 1
+  mkdir -p ${pkgdir}/usr/share/gconf/schemas
   gconf-merge-schema ${pkgdir}/usr/share/gconf/schemas/${pkgname}.schemas \
-    ${srcdir}/${pkgname}-${pkgver}/*.schemas || return 1
-  rm -Rf ${pkgdir}/etc/gconf || return 1
+    ${srcdir}/${pkgname}-${pkgver}/*.schemas
+  rm -Rf ${pkgdir}/etc/gconf
 }
 
 # vim:set ts=2 sw=2 et:
