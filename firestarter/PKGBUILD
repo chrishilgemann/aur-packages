@@ -13,7 +13,7 @@
 
 pkgname=firestarter
 pkgver=1.0.3
-pkgrel=9
+pkgrel=10
 pkgdesc="GUI fron-end for iptables"
 arch=('i686' 'x86_64')
 license=('GPLv2')
@@ -25,12 +25,14 @@ source=("http://downloads.sourceforge.net/firestarter/$pkgname-$pkgver.tar.gz"
         'rc.firestarter'
         '12_firestarter_transparent_icon.patch'
         '18_fix_memleak.patch'
+        '20-net-tools-ifconfig-format-change.patch'
         'events-log-fix.patch'
         'menu-toolbar-icons-fix.patch')
 md5sums=('f46860a9e16dac4b693bd05f16370b03'
          '76ece068fa966c70b0764ec9e644edf5'
          'b657c53280b30f1b4976ec01eff085e8'
          'b31efd1caf430d979e26abb2618a3659'
+         '7bcd40b3690e3833078ea31a8a9935f1'
          'acd91fefe00edb41dd38fcc91567707f'
          'ea9cd9b92939c554b26ccdfe735a2d90')
 
@@ -38,12 +40,12 @@ build() {
   cd $srcdir/$pkgname-$pkgver
   
   # Apply patches to fix things
-  #
   # Transparent tray icon (from Ubuntu launchpad)
-  patch -Np1 -i ../12_firestarter_transparent_icon.patch
-  
+  patch -Np1 -i "$srcdir/12_firestarter_transparent_icon.patch"
   # fix GUI crashes on newer Gnome libs (from Ubuntu launchpad)
-  patch -Np1 -i ../18_fix_memleak.patch
+  patch -Np1 -i "$srcdir/18_fix_memleak.patch"
+  # patch to use the new 'ifconfig' from net-tools (thanks to Joeny Ang)
+  patch -Np1 -i "$srcdir/20-net-tools-ifconfig-format-change.patch"
   
   # Replace kernel.log with iptables.log
   patch -Np1 -i ../events-log-fix.patch
