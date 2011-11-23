@@ -13,10 +13,10 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=nagios-nrpe
-pkgver=2.12
-pkgrel=10
+pkgver=2.13
+pkgrel=1
 pkgdesc="Daemon to answer plugin requests from Nagios on remote hosts."
-arch=(i686 x86_64)
+arch=('i686' 'x86_64')
 license=('GPL')
 depends=('openssl')
 options=(!libtool)
@@ -24,20 +24,20 @@ install="$pkgname.install"
 backup=('etc/nrpe/nrpe.cfg' 'etc/xinetd.d/nrpe')
 url="http://www.nagios.org/"
 source=("http://downloads.sourceforge.net/nagios/nrpe-$pkgver.tar.gz" 'rc.nrpe')
-md5sums=('b2d75e2962f1e3151ef58794d60c9e97'
+md5sums=('e5176d9b258123ce9cf5872e33a77c1a'
          '417a0d692d79b80bf9e8b2d4a26467f9')
 
 build() {
 	cd $srcdir/nrpe-$pkgver
 
-	./configure --prefix=/usr \
+	./configure \
+    --prefix=/usr \
     --sysconfdir=/etc/nrpe \
 		--with-nrpe-user=nrpe \
     --with-nrpe-group=nrpe \
 		--enable-command-args
   
 	make
-	
 }
 
 package() {
