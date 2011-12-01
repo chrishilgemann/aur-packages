@@ -13,16 +13,16 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=freeipmi
-pkgver=1.0.3
-pkgrel=2
+pkgver=1.0.9
+pkgrel=1
 pkgdesc="sensor monitoring, system event monitoring, power control, and serial-over-LAN (SOL)"
 arch=('i686' 'x86_64')
 url="http://www.gnu.org/software/freeipmi/"
 license=('GPL')
 depends=('libgcrypt')
 options=('!libtool')
-source=("http://ftp.gluster.com/pub/freeipmi/$pkgver/$pkgname-$pkgver.tar.gz")
-md5sums=('e3d73925bec75f902abfe905bbb828e7')
+source=("http://ftp.gnu.org/gnu/$pkgname/$pkgname-$pkgver.tar.gz")
+md5sums=('683bffba0534876148eb065926ad3bb5')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
