@@ -12,7 +12,7 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=yasat
-pkgver=351
+pkgver=421
 pkgrel=1
 pkgdesc="A simple stupid audit tool"
 arch=('any')
@@ -21,7 +21,7 @@ depends=('sed' 'grep' 'coreutils')
 backup=('etc/yasat/yasat.conf')
 url="http://yasat.sourceforge.net/"
 source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz")
-md5sums=('df5442b911790957447a738aef119b65')
+md5sums=('5500788122e8bcc4f72814f43c3cb70f')
 
 build() {
   msg "Nothing to compile for $pkgname"
