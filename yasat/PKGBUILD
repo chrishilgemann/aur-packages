@@ -35,11 +35,11 @@ package() {
   chmod +x ./yasat.sh || return 1
   
   install -Dm0755 yasat.sh $pkgdir/usr/bin/yasat.sh || return 1
-  mkdir -p $pkgdir/usr/share/yasat/ || return 1
+  install -dm755 $pkgdir/usr/share/yasat/ || return 1
   cp -R plugins $pkgdir/usr/share/yasat/ || return 1
   cp common $pkgdir/usr/share/yasat/ || return 1
   cp osdetection $pkgdir/usr/share/yasat/ || return 1
-  mkdir -p $pkgdir/etc/yasat/ || return 1
+  install -dm755 $pkgdir/etc/yasat/ || return 1
   cat > $pkgdir/etc/yasat/yasat.conf << EOT
 YASAT_ROOT=/usr/share/yasat/
 PLUGINS_REP=/usr/share/yasat/plugins/

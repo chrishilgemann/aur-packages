@@ -34,11 +34,11 @@ package() {
   _SHARE_DIR="usr/share/$pkgname"
   
   # Install webroot files
-	mkdir -p $pkgdir/$_INST_DIR || return 1
+	install -dm755 $pkgdir/$_INST_DIR || return 1
 	cp -r $srcdir/$pkgname-$pkgver/src/* $pkgdir/$_INST_DIR || return 1
 	
   # Install SQL schema files
-  mkdir -p $pkgdir/$_SHARE_DIR || return 1
+  install -dm755 $pkgdir/$_SHARE_DIR || return 1
 	cp -r $srcdir/$pkgname-$pkgver/tools/sql $pkgdir/$_SHARE_DIR/ || return 1
 
   # Fix our configuration file
@@ -46,7 +46,7 @@ package() {
     -e "s|/usr/local/apache/htdocs/etraxis|/$_INST_DIR|g" \
     -e "s|/usr/local/etraxis/bins/|/$_INST_DIR/attachments|g" \
     $pkgdir/$_INST_DIR/engine/config.php || return 1
-  mkdir -p $pkgdir/$_INST_DIR/attachments
+  install -dm755 $pkgdir/$_INST_DIR/attachments
 	
   # Set correct permissions
   chown -R 33:33 $pkgdir/$_INST_DIR || return 1

@@ -31,7 +31,7 @@ package() {
   _INST_DIR='srv/http/dalbum'
 
   # Install webroot files
-	mkdir -p $pkgdir/$_INST_DIR || return 1
+	install -dm755 $pkgdir/$_INST_DIR || return 1
 	cp -r $srcdir/* $pkgdir/$_INST_DIR || return 1
 	
   # Fix permissions

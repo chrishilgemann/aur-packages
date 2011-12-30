@@ -34,7 +34,7 @@ package() {
   # patch to fix paths
   ( cd "usr/" && patch -p0 < "$srcdir/fix-paths.patch" )
 
-  mkdir -p $pkgdir/{etc,usr/{bin,share/doc/$pkgname},var/massh}
+  install -dm755 $pkgdir/{etc,usr/{bin,share/doc/$pkgname},var/massh}
 
   cp usr/local/bin/* $pkgdir/usr/bin/
   cp usr/local/etc/* $pkgdir/etc/

@@ -33,7 +33,7 @@ package() {
   install -Dm755 $pkgname $pkgdir/usr/sbin/$pkgname || return 1
 
   # Install configuration file
-  mkdir -p $pkgdir/etc/$pkgname/rules.d/examples.d || return 1
+  install -dm755 $pkgdir/etc/$pkgname/rules.d/examples.d || return 1
   install -m600 $pkgname.cfg $pkgdir/etc/$pkgname/$pkgname.cfg || return 1
   chmod -R o=rwX,go= $pkgdir/etc/$pkgname || return 1
 

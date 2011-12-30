@@ -80,15 +80,15 @@ package() {
   make DESTDIR=$pkgdir install || return 1
   
   # Install configuration examples
-  mkdir -p $pkgdir/etc/$pkgname/ || return 1
+  install -dm755 $pkgdir/etc/$pkgname/
   cp -r example $pkgdir/etc/$pkgname/ || return 1
   
   # Install xinetd configuration
-  mkdir -p $pkgdir/etc/xinetd.d/ || return 1
+  install -dm755 $pkgdir/etc/xinetd.d/ || return 1
   cp $srcdir/xinetd.$pkgname $pkgdir/etc/xinetd.d/$pkgname || return 1
   
   # Create some files
-  mkdir -p $pkgdir/var/$pkgname/ || return 1
+  install -dm755 $pkgdir/var/$pkgname/ || return 1
   chmod 700 $pkgdir/var/$pkgname/ || return 1
   chown -R $_amandauser:$_devgroup $pkgdir/var/$pkgname || return 1
 
@@ -109,7 +109,7 @@ EOT
   chown $_amandauser:$_devgroup $pkgdir/$_amandadumpdates || return 1
   chmod 664 $pkgdir/$_amandadumpdates || return 1
 
-  mkdir -p $pkgdir/$_amandagnutarlists || return 1
+  install -dm755 $pkgdir/$_amandagnutarlists || return 1
   chown -R $_amandauser:$_devgroup $pkgdir/$_amandagnutarlists || return 1
 
   # Fix permissions

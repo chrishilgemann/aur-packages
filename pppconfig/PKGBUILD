@@ -36,7 +36,7 @@ package() {
   install -D -m755 0dns-down $pkgdir/usr/sbin/0dns-down || return 1
   install -D -m644 man/pppconfig.8 $pkgdir/usr/share/man/man8/pppconfig.8 || return 1
 
-  mkdir -p $pkgdir/etc/ppp/{peers,resolv} $pkgdir/etc/chatscripts || return 1
+  install -dm755 $pkgdir/etc/ppp/{peers,resolv} $pkgdir/etc/chatscripts || return 1
 }
 
 # vim:set ts=2 sw=2 et:

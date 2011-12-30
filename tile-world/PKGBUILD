@@ -34,8 +34,8 @@ build() {
 package() {
   cd "$srcdir/tworld-$pkgver"
 
-  mkdir -p ${pkgdir}/usr/{bin,share/{tworld,man/man6}}
-  mkdir -p ${pkgdir}/usr/share/tworld/{sets,data,res}
+  install -dm755 ${pkgdir}/usr/{bin,share/{tworld,man/man6}}
+  install -dm755 ${pkgdir}/usr/share/tworld/{sets,data,res}
   install -m755 tworld $pkgdir/usr/bin
   install -m644 sets/*.dac $pkgdir/usr/share/tworld/sets
   install -m644 data/*.dat $pkgdir/usr/share/tworld/data

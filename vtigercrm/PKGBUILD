@@ -36,7 +36,7 @@ package() {
   
   # Install the server files
   msg "Installing http files to $_INSTDIR then setting ownership and permissions"
-  mkdir -p $_INSTDIR || return 1
+  install -dm755 $_INSTDIR || return 1
   cp -ra $srcdir/$pkgname/* $_INSTDIR || return 1
   chown -R 33:33 $_INSTDIR || return 1
   chmod -R u=rwX,go=rX $_INSTDIR || return 1

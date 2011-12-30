@@ -69,7 +69,7 @@ package() {
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR=${pkgdir} install
   
   # Create default empty ruleset and fix permissions
-  mkdir ${pkgdir}/etc/firestarter/outbound/
+  install -dm755 ${pkgdir}/etc/firestarter/outbound/
   touch ${pkgdir}/etc/firestarter/outbound/allow-service
   chown -R root:root ${pkgdir}/etc/firestarter/
 
@@ -86,7 +86,7 @@ package() {
   
   # Merge Schema files to /usr/share/gconf so the .install file
   # can update the database at install time.
-  mkdir -p ${pkgdir}/usr/share/gconf/schemas
+  install -dm755 ${pkgdir}/usr/share/gconf/schemas
   gconf-merge-schema ${pkgdir}/usr/share/gconf/schemas/${pkgname}.schemas \
     ${srcdir}/${pkgname}-${pkgver}/*.schemas
   rm -Rf ${pkgdir}/etc/gconf

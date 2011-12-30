@@ -30,7 +30,7 @@ package() {
   
   # Install 
   msg "Installing files to $_INSTDIR then setting ownership and permissions"
-  mkdir -p $_INSTDIR || return 1
+  install -dm755 $_INSTDIR || return 1
   cp -ra $srcdir/* $_INSTDIR || return 1
   rm -f $_INSTDIR/$pkgname-$pkgver.zip || return 1
   chown -R 33:33 $_INSTDIR || return 1

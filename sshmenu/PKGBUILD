@@ -31,7 +31,7 @@ build() {
 package() {
 	cd $srcdir/${pkgname}-$pkgver
   make DESTDIR=$pkgdir install || return 1
-	mkdir -p $pkgdir/usr/share/licenses/$pkgname || return 1
+	install -dm755 $pkgdir/usr/share/licenses/$pkgname || return 1
 	install -Dm644 License.txt $pkgdir/usr/share/licenses/$pkgname || return 1
 
   # Hack workaround for ruby upgrades - thanks to coopstah13

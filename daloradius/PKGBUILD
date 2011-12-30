@@ -32,11 +32,11 @@ package() {
   _DOCS_DIR="usr/share/$pkgname"
   
   # Install webroot files
-	mkdir -p $pkgdir/$_INST_DIR || return 1
+	install -dm755 $pkgdir/$_INST_DIR || return 1
 	cp -r $srcdir/$pkgname-$_pkgver/* $pkgdir/$_INST_DIR || return 1
 	
   # Docs
-  mkdir -p $pkgdir/$_DOCS_DIR/ || return 1
+  install -dm755 $pkgdir/$_DOCS_DIR/ || return 1
   mv $pkgdir/$_INST_DIR/README        $pkgdir/$_DOCS_DIR/ || return 1
   mv $pkgdir/$_INST_DIR/LICENSE       $pkgdir/$_DOCS_DIR/ || return 1
   mv $pkgdir/$_INST_DIR/FAQS          $pkgdir/$_DOCS_DIR/ || return 1

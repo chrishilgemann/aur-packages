@@ -39,11 +39,11 @@ package() {
 
 	cd $srcdir/${pkgname}-${pkgver}
 
-	mkdir -p $pkgdir/$_INSTDIR/tools/webmin/ || return 1
-	mkdir -p $pkgdir/$_INSTDIR/tools/xslt/ || return 1
-	mkdir -p $pkgdir/$_WWWROOT/ || return 1
-	mkdir -p $pkgdir/$_DOCDIR/ || return 1
-	mkdir -p $pkgdir/var/lib/$pkgname || return 1
+	install -dm755 $pkgdir/$_INSTDIR/tools/webmin/ || return 1
+	install -dm755 $pkgdir/$_INSTDIR/tools/xslt/ || return 1
+	install -dm755 $pkgdir/$_WWWROOT/ || return 1
+	install -dm755 $pkgdir/$_DOCDIR/ || return 1
+	install -dm755 $pkgdir/var/lib/$pkgname || return 1
 
 	# Arch Linux specific path:
 	install -Dm644 tools/httpd_conf $pkgdir/${_SYSCONFDIR}/httpd/conf/extra/httpd-awstats.conf || return 1

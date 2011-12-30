@@ -29,8 +29,8 @@ package() {
   cd $srcdir/$pkgname-$pkgver
 
   msg "Creating dirs..."
-	mkdir -p $pkgdir/usr/bin/
-	mkdir -p $pkgdir/usr/lib/python2.6/site-packages/$pkgname/
+	install -dm755 $pkgdir/usr/bin/
+	install -dm755 $pkgdir/usr/lib/python2.6/site-packages/$pkgname/
   
   msg "Copying files..."
 	cp bin/* $pkgdir/usr/bin/

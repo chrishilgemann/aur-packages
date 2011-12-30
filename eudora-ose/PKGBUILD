@@ -30,11 +30,11 @@ package() {
   cd $srcdir/
   
   # Install the compiled app to /opt
-  mkdir -p $pkgdir/opt/
+  install -dm755 $pkgdir/opt/
   cp -r eudora $pkgdir/opt/
 
   # Create a symlink to /usr/bin
-  mkdir -p $pkgdir/usr/bin/
+  install -dm755 $pkgdir/usr/bin/
   ln -sf /opt/eudora/eudora $pkgdir/usr/bin/eudora
 }
 

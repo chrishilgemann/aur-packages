@@ -51,7 +51,7 @@ package() {
 
   # include conf dir by default to allow other packages to drop check commands in
   sed -i 's|#include_dir=<somedirectory>|include_dir=conf.d/|g' $pkgdir/etc/nrpe/nrpe.cfg
-  mkdir $pkgdir/etc/nrpe/conf.d/
+  install -dm755 $pkgdir/etc/nrpe/conf.d/
 cat > $pkgdir/etc/nrpe/conf.d/process_checks.cfg <<EOT
 command[check_zombie_procs]=/usr/share/nagios/libexec/check_procs -w 5 -c 10 -s Z
 command[check_total_procs]=/usr/share/nagios/libexec/check_procs -w 150 -c 200

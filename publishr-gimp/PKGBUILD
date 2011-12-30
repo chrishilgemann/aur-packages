@@ -31,7 +31,7 @@ package() {
   
   _DESTDIR='usr/lib/gimp/2.0/plug-ins/'
   
-  mkdir -p $pkgdir/$_DESTDIR
+  install -dm755 $pkgdir/$_DESTDIR
   install -m755 $srcdir/publishr.py $pkgdir/$_DESTDIR
   cp -r $srcdir/libpub $pkgdir/$_DESTDIR
   chmod -R 755 $pkgdir/$_DESTDIR

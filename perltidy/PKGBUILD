@@ -35,7 +35,7 @@ package() {
   install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname || return 1
   
   # Install Documentation
-  mkdir -p $pkgdir/usr/share/doc/perltidy-20090616/ || return 1
+  install -dm755 $pkgdir/usr/share/doc/perltidy-20090616/ || return 1
   cp -R docs/* $pkgdir/usr/share/doc/perltidy-20090616/ || return 1
   chmod 444 $pkgdir/usr/share/doc/perltidy-20090616/* || return 1
 }

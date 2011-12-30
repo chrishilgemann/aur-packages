@@ -43,7 +43,7 @@ package() {
 
   make
 
-	mkdir -p $pkgdir/var/lib/sysusage
+	install -dm755 $pkgdir/var/lib/sysusage
   
   install -Dm644 Sar.pm $pkgdir/usr/share/perl5/vendor_perl/SysUsage/Sar.pm
   install -Dm644 sysusage.cfg $pkgdir/etc/sysusage.cfg

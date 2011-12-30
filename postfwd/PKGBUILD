@@ -29,7 +29,7 @@ build() {
 package() {
   cd $srcdir/$pkgname-$pkgver
 
-  mkdir -p $pkgdir/{etc/$pkgname,usr/{bin,sbin,share/{man,$pkgname}}}
+  install -dm755 $pkgdir/{etc/$pkgname,usr/{bin,sbin,share/{man,$pkgname}}}
 
   cp -ra etc/*    $pkgdir/etc/$pkgname/
   cp -ra bin/*    $pkgdir/usr/bin/
@@ -38,10 +38,10 @@ package() {
   cp -ra tools/*  $pkgdir/usr/share/$pkgname/
   cp -ra doc/*    $pkgdir/usr/share/$pkgname/
 
-  mkdir $pkgdir/etc/rc.d/
+  install -dm755 $pkgdir/etc/rc.d/
   mv $pkgdir/usr/bin/postfwd-script.sh $pkgdir/etc/rc.d/$pkgname
 
-  mkdir -p $pkgdir/usr/share/licenses/$pkgname
+  install -dm755 $pkgdir/usr/share/licenses/$pkgname
   mv $pkgdir/usr/share/$pkgname/LICENSE $pkgdir/usr/share/licenses/$pkgname
 }
 

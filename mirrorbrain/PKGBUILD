@@ -72,7 +72,7 @@ package() {
 
   # Install SQL templates
   cd "$srcdir/$pkgname-$pkgver/sql/"
-  mkdir -p $pkgdir/usr/share/$pkgname/sql/
+  install -dm755 $pkgdir/usr/share/$pkgname/sql/
   cp -rv * $pkgdir/usr/share/$pkgname/sql/
 
   # Install default configuration file
