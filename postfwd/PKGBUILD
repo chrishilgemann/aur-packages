@@ -12,19 +12,15 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=postfwd
-pkgver=1.18
-pkgrel=2
+pkgver=1.32
+pkgrel=1
 pkgdesc="Combines complex postfix restrictions in a ruleset similar to those of the most firewalls"
 arch=(any)
 url="http://postfwd.org/"
 license=('bsd')
 depends=('perl')
 source=("http://postfwd.org/$pkgname-$pkgver.tar.gz")
-md5sums=('f921180e0ebefcf74ad3ccfa6611a7f9')
-
-build() {
-  msg "Nothing to compile for $pkgname"
-}
+md5sums=('0023138cba78ba94dca0ab48d968b178')
 
 package() {
   cd $srcdir/$pkgname-$pkgver
