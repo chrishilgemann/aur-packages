@@ -8,6 +8,9 @@ arch=('any')
 url="http://huskfw.info/"
 license=('GPL')
 depends=('perl' 'perl-config-inifiles' 'perl-config-simple')
+backup=('etc/husk/addr_groups.conf'
+        'etc/husk/husk.conf'
+        'etc/husk/interfaces.conf')
 source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz")
 md5sums=('55cc0d8ae0aee1081b72eabd31e30952')
 
