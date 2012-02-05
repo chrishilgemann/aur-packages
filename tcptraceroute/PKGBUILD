@@ -15,13 +15,12 @@
 
 pkgname=tcptraceroute
 pkgver=1.5beta7
-pkgrel=5
+pkgrel=6
 pkgdesc="A traceroute implementation using TCP packets."
 arch=(i686 x86_64)
 url="http://michael.toren.net/code/tcptraceroute/"
 license=('GPL')
-depends=('libpcap>=1.0.0')
-makedepends=('libnet')
+depends=('libpcap>=1.0.0' 'libnet')
 source=("http://michael.toren.net/code/tcptraceroute/$pkgname-$pkgver.tar.gz")
 md5sums=('65d1001509f971ea986fcbc2dd009643')
 
