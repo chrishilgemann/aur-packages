@@ -13,11 +13,12 @@
 
 pkgname=firestarter
 pkgver=1.0.3
-pkgrel=11
+pkgrel=12
 pkgdesc="GUI fron-end for iptables"
 arch=('i686' 'x86_64')
 license=('GPL2')
-depends=('iptables' 'gtk2' 'libgnome' 'libgnomeui' 'libglade' 'pango' 'gksu' 'perl-xml-parser')
+depends=('net-tools' 'iptables' 'gtk2' 'libgnome' 'libgnomeui' 'libglade'
+         'pango' 'gksu' 'perl-xml-parser')
 makedepends=('patch')
 url="http://www.fs-security.com/"
 install="${pkgname}.install"
