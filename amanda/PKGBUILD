@@ -29,8 +29,8 @@ build() {
   # the amanda user and group are required to build
   if [ -z `getent passwd amanda` ] ; then
     msg "Adding user/group amanda (temporarily)"
-    groupadd -g 112 amanda || return 1
-    useradd -u 112 -g amanda -G storage,disk -m -d /var/amanda -s /bin/bash -c "Amanda Backup Daemon"  amanda || return 1
+    groupadd -g 112 amanda
+    useradd -u 112 -g amanda -G storage,disk -m -d /var/amanda -s /bin/bash -c "Amanda Backup Daemon"  amanda
     cleanup=1
   else
     cleanup=0
@@ -46,9 +46,9 @@ build() {
     --with-group=amanda \
     --without-ipv6 \
     --with-ssh-security \
-    --htmldir=/srv/http/docs/$pkgname || return 1
+    --htmldir=/srv/http/docs/$pkgname
 
-	make || return 1
+	make
 	
   if [ $cleanup -eq 1 ]; then
     msg "Removing user/group amanda"
@@ -67,34 +67,34 @@ package() {
   # the amanda user and group are required to package
   if [ -z `getent passwd amanda` ]; then
     msg "Adding user/group amanda (temporarily)"
-    groupadd -g 112 amanda || return 1
-    useradd -u 112 -g amanda -G storage,disk -m -d /var/amanda -s /bin/bash -c "Amanda Backup Daemon"  amanda || return 1
+    groupadd -g 112 amanda
+    useradd -u 112 -g amanda -G storage,disk -m -d /var/amanda -s /bin/bash -c "Amanda Backup Daemon"  amanda
     cleanup=1
   else
     cleanup=0
   fi
   
-  cd $srcdir/$pkgname-$pkgver || return 1
+  cd $srcdir/$pkgname-$pkgver
   
   # Install the compiled output
-  make DESTDIR=$pkgdir install || return 1
+  make DESTDIR=$pkgdir install
   
   # Install configuration examples
   install -dm755 $pkgdir/etc/$pkgname/
-  cp -r example $pkgdir/etc/$pkgname/ || return 1
+  cp -r example $pkgdir/etc/$pkgname/
   
   # Install xinetd configuration
-  install -dm755 $pkgdir/etc/xinetd.d/ || return 1
-  cp $srcdir/xinetd.$pkgname $pkgdir/etc/xinetd.d/$pkgname || return 1
+  install -dm755 $pkgdir/etc/xinetd.d/
+  cp $srcdir/xinetd.$pkgname $pkgdir/etc/xinetd.d/$pkgname
   
   # Create some files
-  install -dm755 $pkgdir/var/$pkgname/ || return 1
-  chmod 700 $pkgdir/var/$pkgname/ || return 1
-  chown -R $_amandauser:$_devgroup $pkgdir/var/$pkgname || return 1
+  install -dm755 $pkgdir/var/$pkgname/
+  chmod 700 $pkgdir/var/$pkgname/
+  chown -R $_amandauser:$_devgroup $pkgdir/var/$pkgname
 
-  touch $pkgdir/$_amandahosts || return 1
-  chown $_amandauser:$_devgroup $pkgdir/$_amandahosts || return 1
-  chmod 600 $pkgdir/$_amandahosts || return 1
+  touch $pkgdir/$_amandahosts
+  chown $_amandauser:$_devgroup $pkgdir/$_amandahosts
+  chmod 600 $pkgdir/$_amandahosts
   cat > $pkgdir/var/$pkgname/.amandahosts << EOT
 # This is where amanda works out what remote connections to allow in the format
 # of <host> <username> <command>
@@ -102,24 +102,24 @@ package() {
 # server1.example.com   amanda  amdump
 EOT
   
-  touch $pkgdir/$_amandadates || return 1
-  chown $_amandauser:$_devgroup $pkgdir/$_amandadates || return 1
+  touch $pkgdir/$_amandadates
+  chown $_amandauser:$_devgroup $pkgdir/$_amandadates
   
-  touch $pkgdir/$_amandadumpdates || return 1
-  chown $_amandauser:$_devgroup $pkgdir/$_amandadumpdates || return 1
-  chmod 664 $pkgdir/$_amandadumpdates || return 1
+  touch $pkgdir/$_amandadumpdates
+  chown $_amandauser:$_devgroup $pkgdir/$_amandadumpdates
+  chmod 664 $pkgdir/$_amandadumpdates
 
-  install -dm755 $pkgdir/$_amandagnutarlists || return 1
-  chown -R $_amandauser:$_devgroup $pkgdir/$_amandagnutarlists || return 1
+  install -dm755 $pkgdir/$_amandagnutarlists
+  chown -R $_amandauser:$_devgroup $pkgdir/$_amandagnutarlists
 
   # Fix permissions
-  chown -R $_amandauser:$_devgroup $pkgdir/etc/$pkgname/ || return 1
+  chown -R $_amandauser:$_devgroup $pkgdir/etc/$pkgname/
   
   # Install the licence
-  install -Dm444 COPYRIGHT $pkgdir/usr/share/licences/$pkgname/COPYRIGHT || return 1
+  install -Dm444 COPYRIGHT $pkgdir/usr/share/licences/$pkgname/COPYRIGHT
 
   # Cleanup
-  rm -Rf $pkgdir/usr/share/amanda/example/ || return 1
+  rm -Rf $pkgdir/usr/share/amanda/example/
   if [ $cleanup -eq 1 ]; then
     msg "Removing user/group amanda"
     userdel -r amanda
