@@ -22,7 +22,7 @@ depends=('openssl')
 options=(!libtool)
 install="$pkgname.install"
 backup=('etc/nrpe/nrpe.cfg' 'etc/xinetd.d/nrpe')
-url="http://www.nagios.org/"
+url='http://exchange.nagios.org/directory/Addons/Monitoring-Agents/NRPE--2D-Nagios-Remote-Plugin-Executor/details'
 source=("http://downloads.sourceforge.net/nagios/nrpe-$pkgver.tar.gz" 'rc.nrpe')
 md5sums=('e5176d9b258123ce9cf5872e33a77c1a'
          '417a0d692d79b80bf9e8b2d4a26467f9')
