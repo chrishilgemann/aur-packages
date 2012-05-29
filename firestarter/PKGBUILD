@@ -41,7 +41,7 @@ md5sums=('f46860a9e16dac4b693bd05f16370b03'
 
 build() {
   cd $srcdir/$pkgname-$pkgver
-  
+
   # Apply patches to fix things
   # Transparent tray icon (from Ubuntu launchpad)
   patch -Np1 -i "$srcdir/12_firestarter_transparent_icon.patch"
@@ -49,10 +49,10 @@ build() {
   patch -Np1 -i "$srcdir/18_fix_memleak.patch"
   # patch to use the new 'ifconfig' from net-tools (thanks to Joeny Ang)
   patch -Np1 -i "$srcdir/20-net-tools-ifconfig-format-change.patch"
-  
+
   # Replace kernel.log with iptables.log
   patch -Np1 -i ../events-log-fix.patch
-  
+
   # menu-toolbar-icons-fix.patch: fixed a couple menu and toolbar icons to follow GTK theme
   patch -Np1 -i ../menu-toolbar-icons-fix.patch
 
@@ -65,7 +65,7 @@ build() {
     --prefix=/usr \
     --sysconfdir=/etc \
     --localstatedir=/var
-  
+
   make
 }
 
@@ -73,7 +73,7 @@ package() {
   cd $srcdir/$pkgname-$pkgver
 
   make GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR=${pkgdir} install
-  
+
   # Create default empty ruleset and fix permissions
   install -dm755 ${pkgdir}/etc/firestarter/outbound/
   touch ${pkgdir}/etc/firestarter/outbound/allow-service
@@ -81,15 +81,15 @@ package() {
 
   # Install rc.init script
   install -D -m755 ${srcdir}/rc.firestarter ${pkgdir}/etc/rc.d/firestarter
-  
+
   # Fix the desktop launcher to run with root permission using gksudo.
   sed -i "s|Exec=|TryExec=gksu\n\0gksu |" \
     ${pkgdir}/usr/share/gnome/apps/Internet/firestarter.desktop
-  
+
   # Move the .desktop file to a standard location
   install -Dm644 $pkgdir/usr/share/gnome/apps/Internet/${pkgname}.desktop $pkgdir/usr/share/applications/${pkgname}.desktop
   rm -rf $pkgdir/usr/share/gnome
-  
+
   # Merge Schema files to /usr/share/gconf so the .install file
   # can update the database at install time.
   install -dm755 ${pkgdir}/usr/share/gconf/schemas
