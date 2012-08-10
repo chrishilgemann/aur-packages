@@ -1,7 +1,9 @@
 */src/*
 */pkg/*
 */built/*
-*/*.tar.gz
+*/*-*-*-*.pkg.tar.xz
+*/*-*-*-*.pkg.tar.gz
+*/*-*-*.src.tar.gz
 apache-mod_bw/mod_bw-*.*.tgz
 gitweb/git-*.tar.bz2
 gnome-web-photo/gnome-web-photo-*.tar.bz2
