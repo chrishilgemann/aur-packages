@@ -30,17 +30,17 @@ build() {
 
 package() {
 	cd $srcdir/${pkgname}-$pkgver
-  make DESTDIR=$pkgdir install || return 1
-	install -dm755 $pkgdir/usr/share/licenses/$pkgname || return 1
-	install -Dm644 License.txt $pkgdir/usr/share/licenses/$pkgname || return 1
+  make DESTDIR=$pkgdir install
+	install -dm755 $pkgdir/usr/share/licenses/$pkgname
+	install -Dm644 License.txt $pkgdir/usr/share/licenses/$pkgname
 
   # Hack workaround for ruby upgrades - thanks to coopstah13
   msg "Implementing hacky workaround for ruby updates"
-  cd $pkgdir/usr/lib/ruby || return 1
-  mv 1.8 1.9.1 || return 1
+  cd $pkgdir/usr/lib/ruby
+  mv 1.8 1.9.1
   sed \
     -e 's|ftools|fileutils|g' \
-    -i 1.9.1/sshmenu.rb || return 1
+    -i 1.9.1/sshmenu.rb
 }
 
 # vim:set ts=2 sw=2 et:

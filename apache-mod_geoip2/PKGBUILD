@@ -25,12 +25,12 @@ md5sums=('5d35c9a9cbf47c2cb636bed26cd5fa19')
 
 build() {
   cd $srcdir/mod_geoip2_$pkgver
-  apxs -lGeoIP -L/usr/lib -I/usr/include -c mod_geoip.c || return 1
+  apxs -lGeoIP -L/usr/lib -I/usr/include -c mod_geoip.c
 }
 
 package() {
   cd $srcdir/mod_geoip2_$pkgver
-  install -Dm0755 .libs/mod_geoip.so $pkgdir/usr/lib/httpd/modules/mod_geoip.so || return 1
+  install -Dm0755 .libs/mod_geoip.so $pkgdir/usr/lib/httpd/modules/mod_geoip.so
 }
 
 # vim:set ts=2 sw=2 et:

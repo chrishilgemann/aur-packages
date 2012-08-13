@@ -35,17 +35,17 @@ build() {
     --with-manmode=644 \
     --with-bingrp=root \
     --disable-readline \
-    --disable-transselinux || return 1
+    --disable-transselinux
 
-  make || return 1
+  make
 }
 
 package() {
   cd $srcdir/$pkgname-$pkgver
   
-  make prefix=$pkgdir/usr install || return 1
+  make prefix=$pkgdir/usr install
 
-  install -Dm644 COPYRIGHT $pkgdir/usr/share/licenses/dump/COPYRIGHT || return 1
+  install -Dm644 COPYRIGHT $pkgdir/usr/share/licenses/dump/COPYRIGHT
 }
 
 # vim:set ts=2 sw=2 et:

@@ -40,7 +40,7 @@ build() {
     --localstatedir=/var \
     --enable-libnotify
 
-  make LDFLAGS+="-Wl,--export-dynamic" || return 1
+  make LDFLAGS+="-Wl,--export-dynamic"
 }
 
 package() {

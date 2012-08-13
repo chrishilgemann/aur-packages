@@ -30,11 +30,11 @@ package() {
   
   # Install 
   msg "Installing files to $_INSTDIR then setting ownership and permissions"
-  install -dm755 $_INSTDIR || return 1
-  cp -ra $srcdir/* $_INSTDIR || return 1
-  rm -f $_INSTDIR/$pkgname-$pkgver.zip || return 1
-  chown -R 33:33 $_INSTDIR || return 1
-  chmod -R u=rwX,go=rX $_INSTDIR || return 1
+  install -dm755 $_INSTDIR
+  cp -ra $srcdir/* $_INSTDIR
+  rm -f $_INSTDIR/$pkgname-$pkgver.zip
+  chown -R 33:33 $_INSTDIR
+  chmod -R u=rwX,go=rX $_INSTDIR
 }
 
 # vim:set ts=2 sw=2 et:

@@ -33,15 +33,15 @@ build() {
   
   ./configure --prefix=/usr \
     --sysconfdir=/etc \
-    --mandir=/usr/share/man || return 1
+    --mandir=/usr/share/man
 
-  make || return 1
+  make
 }
   
 package() {
   cd "$srcdir/$_PKGNAME-$pkgver"
 
-  make DESTDIR="$pkgdir/" install || return 1
+  make DESTDIR="$pkgdir/" install
   
   # Copy some extra files over to the package that 'make install' doesn't do
   install -Dm755 ${srcdir}/rc.$_PKGNAME ${pkgdir}/etc/rc.d/${_PKGNAME}

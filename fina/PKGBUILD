@@ -22,26 +22,22 @@ source=("http://www.schwarzvogel.de/pkgs/$pkgname-$pkgver.tar.gz" "rc.$pkgname")
 md5sums=('3d8f91e79369a9fd6245c9a95337ce08'
          'ce205a5a9dec51325dc523344c18140c')
 
-build() {
-  msg "Nothing to compile for $pkgname"
-}
-
 package() {
-  cd $srcdir/$pkgname-$pkgver || return 1
+  cd $srcdir/$pkgname-$pkgver
 
   # Install main program script
-  install -Dm755 $pkgname $pkgdir/usr/sbin/$pkgname || return 1
+  install -Dm755 $pkgname $pkgdir/usr/sbin/$pkgname
 
   # Install configuration file
-  install -dm755 $pkgdir/etc/$pkgname/rules.d/examples.d || return 1
-  install -m600 $pkgname.cfg $pkgdir/etc/$pkgname/$pkgname.cfg || return 1
-  chmod -R o=rwX,go= $pkgdir/etc/$pkgname || return 1
+  install -dm755 $pkgdir/etc/$pkgname/rules.d/examples.d
+  install -m600 $pkgname.cfg $pkgdir/etc/$pkgname/$pkgname.cfg
+  chmod -R o=rwX,go= $pkgdir/etc/$pkgname
 
   # Install example rules
-  cp -r example-rules.d/* $pkgdir/etc/$pkgname/rules.d/examples.d/ || return 1
+  cp -r example-rules.d/* $pkgdir/etc/$pkgname/rules.d/examples.d/
 
   # Install rc.d script
-  install -Dm755 $srcdir/rc.$pkgname $pkgdir/etc/rc.d/$pkgname || return 1
+  install -Dm755 $srcdir/rc.$pkgname $pkgdir/etc/rc.d/$pkgname
 }
 
 # vim:set ts=2 sw=2 et:

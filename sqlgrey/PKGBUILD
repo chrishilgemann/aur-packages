@@ -15,7 +15,7 @@ pkgname=sqlgrey
 pkgver=1.6.8
 pkgrel=4
 pkgdesc="Postfix greylisting policy service with auto-white-listing written in Perl with SQL database as storage backend. Greylisting stops 50 to 90 % junk mails (spam and virus) before they reach your Postfix server (saves BW, user time and CPU time)."
-arch=(any)
+arch=('any')
 url="http://sqlgrey.sourceforge.net/"
 license=('GPL')
 depends=('perl' 'perl-net-server' 'perl-io-multiplex' 'perl-dbi' 'perl-date-calc' 'postfix>=2.1')
@@ -30,16 +30,16 @@ build() {
   # UID / GID 111 = sqlgrey
 	cd $srcdir/$pkgname-$pkgver
 
-	make || return 1
+	make
 }
 
 package() {
 	cd $srcdir/$pkgname-$pkgver
 
-  make ROOTDIR=${pkgdir} install || return 1
+  make ROOTDIR=${pkgdir} install
 	
   msg "Installing rc.d script..."
-  install -D -m755 $srcdir/rc.$pkgname $pkgdir/etc/rc.d/$pkgname || return 1
+  install -D -m755 $srcdir/rc.$pkgname $pkgdir/etc/rc.d/$pkgname
   
   msg "Creating .local config files..."
   touch $pkgdir/etc/sqlgrey/clients_ip_whitelist.local
@@ -66,10 +66,10 @@ EOD
 EOD
 
   msg "Setting permissions..."
-  chown -R 111:111 $pkgdir/etc/sqlgrey || return 1
+  chown -R 111:111 $pkgdir/etc/sqlgrey
 
   msg "Cleaning up..."
-  rm -Rf $pkgdir/etc/init.d || return 1
+  rm -Rf $pkgdir/etc/init.d
 }
 
 # vim:set ts=2 sw=2 et:

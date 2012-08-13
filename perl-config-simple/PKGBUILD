@@ -34,7 +34,7 @@ build() {
       INSTALLSITELIB=/usr/lib/perl5/site_perl \
       INSTALLSITEARCH=/usr/lib/perl5/site_perl/${archname}
 
-  /usr/bin/make || return 1
+  /usr/bin/make
   }
 package() {
   cd  $srcdir/Config-Simple-$pkgver

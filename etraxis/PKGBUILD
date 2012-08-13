@@ -25,32 +25,28 @@ backup=("srv/http/$pkgname/engine/config.php")
 source=("http://$pkgname.googlecode.com/files/$pkgname-$pkgver.zip")
 md5sums=('5a37762870f73d4b4643580071c3bb5e')
 
-build() {
-  msg "Nothing to compile for $pkgname"
-}
-
 package() {
   _INST_DIR="srv/http/$pkgname"
   _SHARE_DIR="usr/share/$pkgname"
   
   # Install webroot files
-	install -dm755 $pkgdir/$_INST_DIR || return 1
-	cp -r $srcdir/$pkgname-$pkgver/src/* $pkgdir/$_INST_DIR || return 1
+	install -dm755 $pkgdir/$_INST_DIR
+	cp -r $srcdir/$pkgname-$pkgver/src/* $pkgdir/$_INST_DIR
 	
   # Install SQL schema files
-  install -dm755 $pkgdir/$_SHARE_DIR || return 1
-	cp -r $srcdir/$pkgname-$pkgver/tools/sql $pkgdir/$_SHARE_DIR/ || return 1
+  install -dm755 $pkgdir/$_SHARE_DIR
+	cp -r $srcdir/$pkgname-$pkgver/tools/sql $pkgdir/$_SHARE_DIR/
 
   # Fix our configuration file
   sed -i \
     -e "s|/usr/local/apache/htdocs/etraxis|/$_INST_DIR|g" \
     -e "s|/usr/local/etraxis/bins/|/$_INST_DIR/attachments|g" \
-    $pkgdir/$_INST_DIR/engine/config.php || return 1
+    $pkgdir/$_INST_DIR/engine/config.php
   install -dm755 $pkgdir/$_INST_DIR/attachments
 	
   # Set correct permissions
-  chown -R 33:33 $pkgdir/$_INST_DIR || return 1
-  chmod -R u=rwX,go=rX $pkgdir/$_INST_DIR || return 1
+  chown -R 33:33 $pkgdir/$_INST_DIR
+  chmod -R u=rwX,go=rX $pkgdir/$_INST_DIR
 }
 
 # vim:set ts=2 sw=2 et:

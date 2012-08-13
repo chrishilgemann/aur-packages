@@ -53,7 +53,7 @@ package() {
   make -C src/bin DESTDIR=$pkgdir install
   make -C src/include DESTDIR=$pkgdir install
   make -C src/interfaces DESTDIR=$pkgdir install
-  #make -C doc DESTDIR=$pkgdir install || return 1
+  #make -C doc DESTDIR=$pkgdir install
   
   # clean up unneeded installed items
   rm -rf $pkgdir/usr/include/postgresql/internal
@@ -65,6 +65,6 @@ package() {
   rm -f $pkgdir/usr/share/postgresql/pg_service.conf.sample
   
   # install license
-  install -D -m644 COPYRIGHT $pkgdir/usr/share/licenses/$pkgname/LICENSE || return 1
+  install -D -m644 COPYRIGHT $pkgdir/usr/share/licenses/$pkgname/LICENSE
 }
 # vim:set ts=2 sw=2 et:
