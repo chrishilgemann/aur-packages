@@ -29,6 +29,7 @@ md5sums=('676c743cb64fdc646c290c62e45640ff'
 GUI_ENFORCE=1 # set to 0 if you don't want a GUI at all
 
 # Build a custom array of depends based on what DE is installed
+_type=
 if [[ -e '/usr/lib/libkonq.so' ]] ; then
   # KDE is installed
   depends=( ${depends[@]} xorg-utils python2-pyqt kdebindings-python )
