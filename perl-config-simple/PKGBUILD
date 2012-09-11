@@ -12,20 +12,20 @@
 ### If you have found a problem with the package/PKGBUILD (as opposed to
 ### the software) then please do email me or post an AUR comment.
 
-pkgname=perl-config-simple
-pkgver=4.59
-pkgrel=2
-pkgdesc="Simple configuration file class to create and read config files"
-url="http://search.cpan.org/~sherzodr/Config-Simple"
+pkgname=perl-warnings-unused
+pkgver=0.04
+pkgrel=1
+pkgdesc="Produces warnings when unused variables are detected"
+url="http://search.cpan.org/~gfuji/warnings-unused/"
 depends=('perl')
 arch=('i686' 'x86_64')
 license=('GPL')
 options=('!emptydirs')
-source=("http://search.cpan.org/CPAN/authors/id/S/SH/SHERZODR/Config-Simple-$pkgver.tar.gz") 
-md5sums=('96513b61c7db591339ce2577878a3b32')
+source=("http://search.cpan.org/CPAN/authors/id/G/GF/GFUJI/warnings-unused-$pkgver.tar.gz") 
+md5sums=('5ec13c2f8e9fec152c53ef2e9e431179')
 
 build() {
-  cd  $srcdir/Config-Simple-$pkgver
+  cd $srcdir/warnings-unused-$pkgver
 
   eval `perl -V:archname`
 
@@ -34,10 +34,11 @@ build() {
       INSTALLSITELIB=/usr/lib/perl5/site_perl \
       INSTALLSITEARCH=/usr/lib/perl5/site_perl/${archname}
 
-  /usr/bin/make
-  }
+  /usr/bin/make -j1
+}
+
 package() {
-  cd  $srcdir/Config-Simple-$pkgver
+  cd  $srcdir/warnings-unused-$pkgver
 
   /usr/bin/make DESTDIR="$pkgdir" install
   /usr/bin/find $pkgdir -name '.packlist' -print0 | xargs -0 rm -f

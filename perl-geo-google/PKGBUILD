@@ -14,10 +14,10 @@
 pkgname=perl-geo-google
 _cpanname=Geo-Google
 pkgver=0.05
-pkgrel=1
+pkgrel=2
 pkgdesc="Perform geographical queries using Google Maps"
 url="http://search.cpan.org/~allenday/$_cpanname-$pkgver/"
-depends=('perl')
+depends=('perl' 'perl-json')
 arch=('i686' 'x86_64')
 license=('GPL')
 options=('!emptydirs')
