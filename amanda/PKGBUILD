@@ -63,7 +63,7 @@ build() {
     --mandir=/usr/share/man \
 		--with-user=$_amandauser \
     --with-group=$_amandagroup \
-    --without-ipv6 \
+    --with-ipv6 \
     --with-ssh-security \
     --htmldir=/srv/http/docs/$pkgname
 
