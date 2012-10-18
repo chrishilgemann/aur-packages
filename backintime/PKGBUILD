@@ -37,12 +37,12 @@ if [[ -e '/usr/lib/libkonq.so' ]] ; then
 fi
 if [[ -n "$(which gnome-session 2> /dev/null)" ]] ; then
   # GNOME really
-  depends=( ${depends[@]} pygtk python-notify gnome-python meld gksu gnome-session )
+  depends=( ${depends[@]} pygtk python2-notify gnome-python meld gksu gnome-session )
   _type=( ${_type[@]} gnome )
 fi
 if [[ ${GUI_ENFORCE} == 1 && -z "${_type[@]}" ]] ; then
   # other DE like Xfce, Enlightenment etc.
-  depends=( ${depends[@]} pygtk python-notify gnome-python meld gksu )
+  depends=( ${depends[@]} pygtk python2-notify gnome-python meld gksu )
   _type=( ${_type[@]} gnome )
 fi
 
