@@ -4,9 +4,14 @@
 */*-*-*-*.pkg.tar.xz
 */*-*-*-*.pkg.tar.gz
 */*-*-*.src.tar.gz
+*/*-*.tar.gz
 apache-mod_bw/mod_bw-*.*.tgz
 gitweb/git-*.tar.bz2
 gnome-web-photo/gnome-web-photo-*.tar.bz2
 massh/massh.tgz
 mibbrowser/mibbrowser.zip
 postgresql-client/postgresql-*.tar.bz2
+dalbum/dalbum*.tar.gz
+freeipmi/bmc-watchdog.logrotate
+pppconfig/pppconfig_*.tar.gz
+telnet-bsd/telnet-bsd-*.tar.bz2
