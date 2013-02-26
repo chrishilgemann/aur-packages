@@ -12,11 +12,11 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=vtigercrm
-pkgver=5.2.1
+pkgver=5.4.0
 pkgrel=1
 pkgdesc="A free, full-featured, 100% Open Source CRM software ideal for small and medium businesses"
 arch=('any')
-url="http://vtiger.com"
+url='https://www.vtiger.com/crm/open-source/'
 license=('custom')
 depends=('apache>=2.0.40' 'mysql>=4.1' 'php>=5.0' 'gd' 'perl' 'perl-archive-zip' 'libpng' 'libjpeg' 'freetype2' 'zlib')
 backup=("srv/http/$pkgname/config.db.php"
@@ -28,7 +28,7 @@ options=('!strip')
 install=$pkgname.install
 source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz"
         "http-$pkgname.conf")
-md5sums=('3d028918fffce148dcedae48744d5979'
+md5sums=('4d9fb047c42a8231bcbbad9c5e31292e'
          'fbb511340a85cd80442beef70c142c42')
 
 package() {
@@ -49,7 +49,6 @@ package() {
   # Install the custom license
   msg "Installing licences to $pkgdir/usr/share/licenses/$pkgname/"
   install -Dm644 $srcdir/$pkgname/LICENSE.txt $pkgdir/usr/share/licenses/$pkgname/LICENSE.txt
-  install -Dm644 $srcdir/$pkgname/LICENSE_AGREEMENT.txt $pkgdir/usr/share/licenses/$pkgname/LICENSE_AGREEMENT.txt
 }
 
 # vim:set ts=2 sw=2 et:
