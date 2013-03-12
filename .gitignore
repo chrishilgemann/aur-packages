@@ -15,3 +15,5 @@ dalbum/dalbum*.tar.gz
 freeipmi/bmc-watchdog.logrotate
 pppconfig/pppconfig_*.tar.gz
 telnet-bsd/telnet-bsd-*.tar.bz2
+linux-lts-xen/linux-*.tar.xz
+linux-lts-xen/patch-*.xz
