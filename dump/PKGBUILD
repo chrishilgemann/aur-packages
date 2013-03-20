@@ -15,11 +15,11 @@
 
 pkgname=dump
 pkgver=0.4b43
-pkgrel=1
+pkgrel=2
 pkgdesc="Standard *nix for performing backups to tapedrive from ext2 and ext3 filesystems"
 arch=('i686' 'x86_64')
 url="http://dump.sourceforge.net/"
-license=('custom')
+license=('BSD')
 depends=('e2fsprogs')
 source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz")
 md5sums=('a708cbac8a0f69dd55aecbb80bb290ca')
