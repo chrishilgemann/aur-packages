@@ -19,16 +19,16 @@ arch=('i686' 'x86_64')
 url="http://citrix.com/English/ps2/products/product.asp?contentID=683148&ntref=hp_nav_US"
 license=('GPL' 'LGPL')
 optdepends=('linux: DomU kernel for x86_64'
-	          'linux-xen: DomU kernel for i686'
-	          'kernel-lts-xen: DomU kernel for i686 (long time supported)')
+            'linux-xen: DomU kernel for i686'
+            'kernel-lts-xen: DomU kernel for i686 (long time supported)')
 makedepends=('rpmextract')
 source=("ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-${pkgver}-1033.i386.rpm"
-	      "ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-xenstore-${pkgver}-1033.i386.rpm"
-      	"ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-${pkgver}-1033.x86_64.rpm"
-      	"ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-xenstore-${pkgver}-1033.x86_64.rpm"
-      	'xe-linux-distribution.service'
-      	'xe-guest-utilities-archlinux.patch'
-      	'ip_address.patch')
+        "ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-xenstore-${pkgver}-1033.i386.rpm"
+        "ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-${pkgver}-1033.x86_64.rpm"
+        "ftp://ftp.prz.edu.pl/pub/archlinux/aur/src/xe-guest-utilities-xenstore-${pkgver}-1033.x86_64.rpm"
+        'xe-linux-distribution.service'
+        'xe-guest-utilities-archlinux.patch'
+        'ip_address.patch')
 md5sums=('843c491e48db32bd424dd266a8290eb4'
          'f469af962b30b03b36a089a5e764de7d'
          '751b8e383d46ed8229bd95ae799755ae'
