@@ -5,7 +5,10 @@
 */*-*-*-*.pkg.tar.gz
 */*-*-*.src.tar.gz
 */*-*.tar.gz
+*/*-*.tar.bz2
+*/*-*.rpm
 apache-mod_bw/mod_bw-*.*.tgz
+apache-mod_form/mod_form.?
 gitweb/git-*.tar.bz2
 gnome-web-photo/gnome-web-photo-*.tar.bz2
 massh/massh.tgz
