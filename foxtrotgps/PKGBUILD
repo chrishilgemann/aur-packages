@@ -1,0 +1,37 @@
+# Maintainer: Elena ``of Valhalla'' Grandi <elena.valhalla@gmail.com>
+# Contributor: victorique <r+aur@wwad.de> (curlnew patch)
+
+pkgname=foxtrotgps
+pkgver=1.1.1
+pkgrel=2
+license=GPL
+pkgdesc="a lightweight and fast mapping application (fork of tangoGPS)"
+arch=(i686 x86_64)
+depends=('libglade' 'gconf' 'libxml2' 'libexif' 'curl' 'gpsd' 'sqlite3')
+makedepends=('intltool' 'bluez')
+optdepends=('python2: import GeoRSS points'
+            'gpscorrelate: photo-geotagging'
+            'jhead: photo-geotagging'
+            'bluez: Zephyr HxM heartrate-monitor support')
+source=(http://www.foxtrotgps.org/releases/$pkgname-$pkgver.tar.gz)
+install=foxtrotgps.install
+url="http://www.foxtrotgps.org/"
+md5sums=('6777d448ee9d3ba195f9d26ea90e3163')
+
+build() {
+  cd "$srcdir"/$pkgname-$pkgver
+
+  ./configure --prefix=/usr --sysconfdir=/etc
+
+  make
+}
+
+package() {
+  cd "$srcdir"/$pkgname-$pkgver
+
+  make DESTDIR=$pkgdir install
+
+  sed -i 's/python$/python2/' "$pkgdir"/usr/bin/georss2foxtrotgps-poi
+  sed -i 's/python$/python2/' "$pkgdir"/usr/bin/osb2foxtrot
+  sed -i 's/python$/python2/' "$pkgdir"/usr/bin/poi2osm
+}
