@@ -12,8 +12,8 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=sqlgrey
-pkgver=1.6.8
-pkgrel=4
+pkgver=1.8.0
+pkgrel=1
 pkgdesc="Postfix greylisting policy service with auto-white-listing written in Perl with SQL database as storage backend. Greylisting stops 50 to 90 % junk mails (spam and virus) before they reach your Postfix server (saves BW, user time and CPU time)."
 arch=('any')
 url="http://sqlgrey.sourceforge.net/"
@@ -22,8 +22,9 @@ depends=('perl' 'perl-net-server' 'perl-io-multiplex' 'perl-dbi' 'perl-date-calc
 optdepends=('perl-dbd-pg: for using postgresql as backend database' 'perl-dbd-mysql: for using mysql as backend database')
 backup=('etc/sqlgrey/sqlgrey.conf' 'etc/sqlgrey/clients_ip_whitelist.local' 'etc/sqlgrey/clients_fqdn_whitelist.local')
 install=$pkgname.install
-source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.bz2" "rc.$pkgname")
-md5sums=('513ddb38e5a9760773d8e1a2b27e31a1'
+source=("http://downloads.sourceforge.net/project/sqlgrey/sqlgrey-1.8%20%28stable%29/$pkgname-$pkgver.tar.gz"
+        "rc.$pkgname")
+md5sums=('de9c6d0740fd2589d4e353e76c40e2c7'
          '028c1b536ef89fa2eb6cbc7fb4708395')
 
 build() {
