@@ -9,6 +9,9 @@ set -u
 cd "$AUR_DIR"
 PKGS=$(find ./ -type f -name PKGBUILD)
 
+echo "Removing all src/ and pkg/ trees"
+rm -Rf */{pkg,src}/
+
 source /etc/makepkg.conf
 
 # Loop through each package
@@ -40,7 +43,7 @@ for PKG in $PKGS ; do
     echo -n "   Moving built packages to $PKG/built... "
     [[ ! -d "$AUR_DIR/$PKG/built" ]] && mkdir "$AUR_DIR/$PKG/built"
     for fname in $BUILT ; do
-      mv "$BUILT" "$AUR_DIR/$PKG/built/"
+      mv "$fname" "$AUR_DIR/$PKG/built/"
     done
     echo "Done"
   fi
