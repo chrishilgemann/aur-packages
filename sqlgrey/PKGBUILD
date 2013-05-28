@@ -55,7 +55,7 @@ package() {
   install -Dm644 -o $UID -g $_GID $srcdir/clients_ip_whitelist.local $pkgdir/etc/sqlgrey/clients_ip_whitelist.local
 
   # set permissions
-  chown -R 111:111 $pkgdir/etc/sqlgrey
+  chown -R $_UID:$_GID $pkgdir/etc/sqlgrey
 
   # remove redundany init.d directory
   rm -Rf $pkgdir/etc/init.d
