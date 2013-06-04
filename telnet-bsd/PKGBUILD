@@ -14,7 +14,7 @@
 
 pkgname=telnet-bsd
 pkgver=1.2
-pkgrel=1
+pkgrel=2
 pkgdesc='Telnet and telnetd ported from OpenBSD'
 arch=('i686' 'x86_64')
 url='ftp://ftp.suse.com/pub/people/kukuk/ipv6/'
@@ -29,7 +29,7 @@ md5sums=('72d72c65e7796dfec999f347da1c295f'
 build() {
   cd "$srcdir"/$pkgname-$pkgver
 
-  ./configure --prefix=/usr
+  ./configure --prefix=/usr --sbindir=/usr/bin
 
   make
 }
