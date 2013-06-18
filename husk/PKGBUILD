@@ -8,16 +8,22 @@ arch=('any')
 url="http://huskfw.info/"
 license=('GPL')
 depends=('perl' 'perl-config-inifiles' 'perl-config-simple')
-conflict=('husk-git')
+conflicts=('husk-git')
 backup=('etc/husk/addr_groups.conf'
         'etc/husk/husk.conf'
         'etc/husk/interfaces.conf')
 source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz")
 md5sums=('92659ae4f912440043ae981851720c50')
 
+prepare() {
+  cd "$srcdir/$pkgname-$pkgver"
+  sed -i Makefile \
+      -e 's|/usr/local/|/usr/|g' \
+      -e 's|/usr/sbin|/usr/bin|g'
+}
+
 package() {
   cd "$srcdir/$pkgname-$pkgver"
-  sed -e 's|/usr/local/|/usr/|g' -i Makefile
   make DESTDIR=$pkgdir install
 }
 

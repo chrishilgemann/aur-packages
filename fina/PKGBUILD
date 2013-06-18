@@ -12,21 +12,36 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=fina
-pkgver=0.2.3
-pkgrel=1
+pkgver=0.2.4
+pkgrel=2
 pkgdesc="A simple, robust shell script that loads iptables rules from a rules directory."
 arch=(any)
 url="http://www.schwarzvogel.de/software-$pkgname.shtml"
 license=('GPLv2')
-source=("http://www.schwarzvogel.de/pkgs/$pkgname-$pkgver.tar.gz" "rc.$pkgname")
-md5sums=('3d8f91e79369a9fd6245c9a95337ce08'
-         'ce205a5a9dec51325dc523344c18140c')
+source=("http://www.schwarzvogel.de/pkgs/$pkgname-$pkgver.tar.gz"
+        'rc.fina'
+        'rc.fina6'
+        'systemd.fina'
+        'systemd.fina6'
+        'flush-iptables.sh'
+        'flush-ip6tables.sh')
+md5sums=('8790e6640cd09779db04ded631dc1d88'
+         'fb36f3e8e74c59551dbdd34ae73554a1'
+         '3c54d56a49133f6fb1fdfeebcd22b388'
+         'a286f87648a0f84ac448cbfffcd53faf'
+         '184204d4e357f90d332a69a60e63f752'
+         'faa4d6181f1b109c0e4e2dbf5faa9408'
+         'd0a12e11a4252f8a7b5a43580c24ea71')
 
 package() {
   cd $srcdir/$pkgname-$pkgver
 
   # Install main program script
-  install -Dm755 $pkgname $pkgdir/usr/sbin/$pkgname
+  install -Dm755 $pkgname $pkgdir/usr/bin/$pkgname
+
+  # install flush-iptables
+  install -Dm755 $srcdir/flush-iptables.sh $pkgdir/usr/bin/flush-iptables
+  install -Dm755 $srcdir/flush-ip6tables.sh $pkgdir/usr/bin/flush-ip6tables
 
   # Install configuration file
   install -dm755 $pkgdir/etc/$pkgname/rules.d/examples.d
@@ -37,7 +52,12 @@ package() {
   cp -r example-rules.d/* $pkgdir/etc/$pkgname/rules.d/examples.d/
 
   # Install rc.d script
-  install -Dm755 $srcdir/rc.$pkgname $pkgdir/etc/rc.d/$pkgname
+  install -Dm755 $srcdir/rc.fina $pkgdir/etc/rc.d/fina
+  install -Dm755 $srcdir/rc.fina6 $pkgdir/etc/rc.d/fina6
+
+  # install systemd "unit file"
+  install -D -m755 $srcdir/systemd.fina $pkgdir/usr/lib/systemd/system/fina.service
+  install -D -m755 $srcdir/systemd.fina6 $pkgdir/usr/lib/systemd/system/fina6.service
 }
 
 # vim:set ts=2 sw=2 et:

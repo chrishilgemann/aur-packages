@@ -3,8 +3,8 @@
 # source application-specific settings
 #[ -f /etc/conf.d/iptables ] && . /etc/conf.d/iptables
 
-IPTABLES='/usr/sbin/iptables'
-FINA='/usr/sbin/fina'
+IPTABLES='/usr/bin/iptables'
+FINA='/usr/bin/fina'
 
 . /etc/rc.conf
 . /etc/rc.d/functions
@@ -22,41 +22,8 @@ case "$1" in
 		;;
 	stop)
 		stat_busy "Stopping fina firewall"
-		fail=0
-		for table in $(cat /proc/net/ip_tables_names) ; do
-			$IPTABLES -t $table -F &>/dev/null && \
-				$IPTABLES -t $table -X &>/dev/null && \
-				$IPTABLES -t $table -Z &>/dev/null
-			[ $? -gt 0 ] && fail=1
-		done
-		if [ $fail -gt 0 ]; then
-			stat_fail
-		else
-			rm_daemon fina
-			# reset policies
-			for table in filter nat mangle raw ; do
-				if grep -qw $table /proc/net/ip_tables_names ; then
-					$IPTABLES -t $table -P OUTPUT ACCEPT
-				fi
-			done
-			for table in filter mangle ; do
-				if grep -qw $table /proc/net/ip_tables_names ; then
-					$IPTABLES -t $table -P INPUT ACCEPT
-					$IPTABLES -t $table -P FORWARD ACCEPT
-				fi
-			done
-			for table in nat mangle raw ; do
-				if grep -qw $table /proc/net/ip_tables_names ; then
-					$IPTABLES -t $table -P PREROUTING ACCEPT
-				fi
-			done
-			for table in nat mangle ; do
-				if grep -qw $table /proc/net/ip_tables_names ; then
-					$IPTABLES -t $table -P POSTROUTING ACCEPT
-				fi
-			done
-			stat_done
-		fi
+    /usr/bin/flush-iptables
+		stat_done
 		;;
 	restart)
 		$0 stop

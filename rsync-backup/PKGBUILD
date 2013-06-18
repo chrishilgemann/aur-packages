@@ -3,9 +3,9 @@
 pkgname=rsync-backup
 pkgver=0.6.0
 pkgrel=1
-pkgdesc="Automatic rsync backups to a mounted disk or remote server. This script is designed for rsync.net but should work on local mounts or other backup services."
+pkgdesc="Automatic rsync backups to a mounted disk or remote server. DEAD PROJECT. Do not use unless you want to maintain it."
 arch=('any')
-url="http://fukawi2.nl/index.php?page=code-rsync-backup"
+url="http://example.com"
 license=('GPL')
 depends=('rsync')
 backup=('etc/rsync-backup/backup.exclude' 'etc/rsync-backup/backup.include' 'etc/rsync-backup/options.conf')

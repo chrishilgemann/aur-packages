@@ -2,24 +2,26 @@
 # http://github.com/fukawi2/aur-packages
 
 pkgname=pgsql-backup
-pkgver=0.9.8
+pkgver=0.9.11
 pkgrel=1
 pkgdesc="Automatic rolling backups for PostgreSQL"
 arch=('any')
 url="http://fukawi2.nl/index.php?page=code-pgsql-backup"
 license=('GPL')
-depends=('tar' 'coreutils' 'gzip' 'postgresql-client')
+depends=('tar' 'coreutils' 'gzip' 'postgresql')
 makedepends=('perl') # reqd for pod2man to make man page
 backup=("etc/$pkgname.conf")
-optdepends=('bzip2: better compression of backups')
+optdepends=('gzip: compression of backups'
+            'bzip2: better compression of backups'
+            'xz: even better compression of backups')
 install="$pkgname.install"
 ### this assumes there is a tag in the git tree
 ### matching $pkgver (which there should be)
 source=("$pkgname-$pkgver.tar.gz::https://github.com/fukawi2/$pkgname/tarball/v$pkgver")
-noextract=("$pkgname-$pkgver.tar.gz") # see build()
-md5sums=('928fc042654b80fa6550c48d499d93c3')
+noextract=("$pkgname-$pkgver.tar.gz") # see prepare()
+md5sums=('3f0616b46dd0fb1a7c8679f1ee6b4214')
 
-build() {
+prepare() {
   # the tarball comes with part of the commit sha1
   # forming part of the directory name, so to have
   # a deterministic tree when building, we'll extract
@@ -29,21 +31,14 @@ build() {
   cd "$srcdir"/$pkgname-$pkgver/
   tar xzf "$srcdir"/$pkgname-$pkgver.tar.gz --strip-components=1
 
-  # build the man pages
-  /usr/bin/core_perl/pod2man --name=pgsql-backup pgsql-backup.pod pgsql-backup.1.man
+  sed -i Makefile \
+      -e 's|D_BIN=/usr/local/sbin|D_BIN=/usr/bin|g'
 }
 
 package() {
   cd "$srcdir"/$pkgname-$pkgver/
 
-  # main script
-  install -D -m0755 -o root -g root src/$pkgname.sh "$pkgdir"/usr/bin/$pkgname
-
-  # config file
-  install -D -m0600 -o root -g root $pkgname.conf "$pkgdir"/etc/$pkgname.conf
-
-  # man page
-  install -Dm0644 pgsql-backup.1.man "$pkgdir"/usr/share/man/man1/pgsql-backup.1p
+  make DESTDIR="$pkgdir" PREFIX='/usr' install
 }
 
 # vim:set ts=2 sw=2 et:
