@@ -12,7 +12,7 @@
 ### the software) then please do email me or post an AUR comment.
 
 pkgname=apache-mod_geoip2
-pkgver=1.2.5
+pkgver=1.2.8
 pkgrel=1
 pkgdesc="geoip interface module for apache."
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ license=('LGPL')
 depends=('apache' 'geoip')
 makedepends=('apache' 'geoip')
 source=("http://geolite.maxmind.com/download/geoip/api/mod_geoip2/mod_geoip2_$pkgver.tar.gz")
-md5sums=('5d35c9a9cbf47c2cb636bed26cd5fa19')
+md5sums=('adab5ca32be41980155e07c8c8bcfc87')
 
 build() {
   cd $srcdir/mod_geoip2_$pkgver
