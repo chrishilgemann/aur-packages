@@ -36,7 +36,7 @@ md5sums=('3921ddc598312983f604541784b35a50'
          '143278e9495821bd887cf84ce0f97af6'
          'd4b89b7ff8ffb187d44fedf294e7f5de'
          'fcd93e2825c7f15355402c9d3569330d'
-         '91e3410014d343355dc8d2815105e184')
+         '8c867371c83ce5848ed841e88be4998a')
 
 build() {
 	cd "$srcdir"/nrpe-$pkgver
