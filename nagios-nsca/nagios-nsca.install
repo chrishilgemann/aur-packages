@@ -1,8 +1,8 @@
 post_install() {
-  if [ -z "`getent group nsca`" ]; then
+  if [ -z "$(getent group nsca)" ]; then
     groupadd -g 32 nsca
   fi
-  if [ -z "`getent passwd nsca`" ]; then
+  if [ -z "$(getent passwd nsca)" ]; then
     useradd -u 32 -g nsca -c "Nagios NSCA" -d /dev/null -s /bin/false nsca
   fi
 }
