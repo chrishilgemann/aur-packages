@@ -39,7 +39,7 @@ md5sums=('3921ddc598312983f604541784b35a50'
          '91e3410014d343355dc8d2815105e184')
 
 build() {
-	cd $srcdir/nrpe-$pkgver
+	cd "$srcdir"/nrpe-$pkgver
 
 	./configure \
     --prefix=/usr \
@@ -52,35 +52,31 @@ build() {
 }
 
 package() {
-  cd $srcdir/nrpe-$pkgver
+  cd "$srcdir"/nrpe-$pkgver
 
   # install and fix sample config file
   install -D -m644 "$srcdir"/nrpe.cfg "$pkgdir"/etc/nrpe/nrpe.cfg
 
   # fix paths to nagios-plugins
-  sed -e 's|/usr/libexec/|/usr/share/nagios/libexec/|g' -i ${pkgdir}/etc/nrpe/nrpe.cfg
+  sed -e 's|/usr/libexec/|/usr/share/nagios/libexec/|g' \
+      -i "$pkgdir"/etc/nrpe/nrpe.cfg
 
-  # comment out default samples as they won't work and may lessen security
-  sed -i 's/^command/#command/' $pkgdir/etc/nrpe/nrpe.cfg
-
-  # include conf dir by default to allow other packages to drop check commands in
-  sed -i 's|#include_dir=<somedirectory>|include_dir=conf.d/|g' $pkgdir/etc/nrpe/nrpe.cfg
-  install -dm755 $pkgdir/etc/nrpe/conf.d/
-cat > $pkgdir/etc/nrpe/conf.d/process_checks.cfg <<EOT
+  install -dm755 "$pkgdir"/etc/nrpe/conf.d/
+cat > "$pkgdir"/etc/nrpe/conf.d/process_checks.cfg <<EOT
 command[check_zombie_procs]=/usr/share/nagios/libexec/check_procs -w 5 -c 10 -s Z
 command[check_total_procs]=/usr/share/nagios/libexec/check_procs -w 150 -c 200
 EOT
 
   # install main application
-  install -D -m755 src/nrpe $pkgdir/usr/bin/nrpe
+  install -D -m755 src/nrpe "$pkgdir"/usr/bin/nrpe
 
   # install systemd "unit" files
-  install -D -m644 $srcdir/nrpe.service   $pkgdir/usr/lib/systemd/system/nrpe.service
-  install -D -m644 $srcdir/nrpe.socket    $pkgdir/usr/lib/systemd/system/nrpe.socket
-  install -D -m644 $srcdir/nrpe@.service  $pkgdir/usr/lib/systemd/system/nrpe@.service
+  install -D -m644 "$srcdir"/nrpe.service   "$pkgdir"/usr/lib/systemd/system/nrpe.service
+  install -D -m644 "$srcdir"/nrpe.socket    "$pkgdir"/usr/lib/systemd/system/nrpe.socket
+  install -D -m644 "$srcdir"/nrpe@.service  "$pkgdir"/usr/lib/systemd/system/nrpe@.service
 
   # install xinetd template
-  install -Dm644 $srcdir/nrpe.xinetd $pkgdir/etc/xinetd.d/nrpe
+  install -Dm644 "$srcdir"/nrpe.xinetd "$pkgdir"/etc/xinetd.d/nrpe
 }
 
 # vim:set ts=2 sw=2 et:
