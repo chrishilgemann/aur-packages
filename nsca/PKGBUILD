@@ -11,11 +11,12 @@
 ### If you have found a problem with the package/PKGBUILD (as opposed to
 ### the software) then please do email me or post an AUR comment.
 
-pkgname=nagios-nsca
+pkgname=nsca
 pkgver=2.9.1
-pkgrel=3
+pkgrel=1
 pkgdesc="Integrate passive alerts and checks from remote machines and applications with Nagios. Useful for processing security alerts, as well as redundant and distributed Nagios setups."
 arch=('i686' 'x86_64')
+replaces=('nagios-nsca')
 license=('GPL')
 depends=('openssl' 'libmcrypt')
 options=(!libtool)
