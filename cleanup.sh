@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AUR_DIR=$(dirname $0)
+AUR_DIR="$(dirname $0)"
 
 set -e
 set -u
@@ -49,8 +49,7 @@ for PKG in $PKGS ; do
   fi
 
   #echo -n "   Fixing permissions... "
-  chmod 640 "$AUR_DIR/$PKG/PKGBUILD"
-  chmod 750 "$AUR_DIR/$PKG"
+  chmod -R u=rwX,go=rX "$AUR_DIR/$PKG"
   #echo "Done"
 done
 
