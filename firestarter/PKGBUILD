@@ -95,9 +95,6 @@ package() {
     "$srcdir"/${pkgname}-${pkgver}/*.schemas
   rm -Rf "$pkgdir"/etc/gconf
 
-  # Install rc.init script
-  install -D -m755 "$srcdir"/rc.firestarter "$pkgdir"/etc/rc.d/firestarter
-
   # install systemd "unit file"
   install -D -m755 "$srcdir"/firestarter.service "$pkgdir"/usr/lib/systemd/system/firestarter.service
 }
